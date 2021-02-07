@@ -11,6 +11,7 @@
 	<modules>
 		<module>configurator</module>
 		<!-- <module>monitoring</module> -->
+		<module>hystrix-dashboard</module>
 		<module>eureka-discovery</module>
 		<module>zuul-gateway</module>
 		<module>auth-service</module>

@@ -1,5 +1,7 @@
 package com.alphalog.geocoder.security.service;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.alphalog.geocoder.security.domain.User;
+import com.alphalog.geocoder.security.domain.Users;
 import com.alphalog.geocoder.security.repository.UserRepository;
 
 @Service
@@ -21,9 +23,9 @@ public class UserServiceImpl implements UserService {
 	private UserRepository repository;
 
 	@Override
-	public void create(User user) {
+	public void create(Users user) {
 
-		User existing = repository.findOne(user.getUsername());
+		Optional<Users> existing = repository.findById(user.getUsername());
 		Assert.isNull(existing, "user already exists: " + user.getUsername());
 
 		String hash = encoder.encode(user.getPassword());
